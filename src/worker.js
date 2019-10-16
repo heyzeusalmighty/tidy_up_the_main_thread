@@ -1,24 +1,17 @@
 import { createStore } from "redux";
-
 import { expose } from "comlink";
+import { combineReducers } from 'redux';
+import countReducer from './store/count.reducer';
 
-const reducer = (state = 0, { type }) => {
-  switch (type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
-    default:
-      return state;
-  }
-};
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  count: countReducer,
+});
+
+const store = createStore(rootReducer);
 expose(store);
-
-
 
 /* eslint-disable */
 self.addEventListener('message', e => {
-    console.log('IAM worker', e.data);
+    console.log('IAM WORKER', e.data);
 });
