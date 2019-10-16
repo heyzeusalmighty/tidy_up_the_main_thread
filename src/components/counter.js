@@ -7,11 +7,11 @@ const CounterDemo = ({ count, increment, decrement }) => (
     <div className='countainer'>
       <p>The current counter is: {count}</p>
       <div className='button-box'>
-        <button onClick={() => increment()} className='button'>
-          <img src={Arrow} className='up-arrow' alt='+' />
-        </button>
         <button onClick={() => decrement()} className='button'>
           <img src={Arrow} className='down-arrow' alt='-' />
+        </button>
+        <button onClick={() => increment()} className='button'>
+          <img src={Arrow} className='up-arrow' alt='+' />
         </button>
       </div>
     </div>
