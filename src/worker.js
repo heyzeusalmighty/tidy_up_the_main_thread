@@ -1,21 +1,24 @@
+import { createStore } from "redux";
+
+import { expose } from "comlink";
+
+const reducer = (state = 0, { type }) => {
+  switch (type) {
+    case "INCREMENT":
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
+expose(store);
+
+
+
 /* eslint-disable */
 self.addEventListener('message', e => {
-    console.log('worker msg:', e);
-})
-
-
-// self.addEventListener('message', function(e) {
-//     var data = e.data;
-//     switch (data.cmd) {
-//       case 'start':
-//         self.postMessage('WORKER STARTED: ' + data.msg);
-//         break;
-//       case 'stop':
-//         self.postMessage('WORKER STOPPED: ' + data.msg +
-//                          '. (buttons will no longer work)');
-//         self.close(); // Terminates the worker.
-//         break;
-//       default:
-//         self.postMessage('Unknown command: ' + data.msg);
-//     };
-//   }, false);
+    console.log('IAM worker', e.data);
+});
